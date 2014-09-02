@@ -59,8 +59,132 @@ The application constructing a bundle may not be sure whether a particular resou
 方法2是一种自定义方法,需要发送方接受方的协调,FHIR中暂时没有定义和描述此类服务的方式.	
 方法3 你要定义消息事件类型,添加消息头资源,发送方和接受方需要协调	
 方法4POSTing to the root (#4) is attractive –provided that the server knows how to perform the ‘search processing’ (i.e. recognize the search link for a resource in the bundle and process accordingly. We could possibly use a profile so that the server can validate the bundle first.
+通用型的事务处理过程是很复杂的,一方面包括了ID的重写操作,另一方面也要照顾bundle中需要删除操作的资源.通过profle资源来约束限制事务的处理过程的行为,比方说,服务器识别出profile,将其作为某次transaction的基准,而不需要实现所有功能.	
 
-<pre class="brush: java; title: ; notranslate" title="">
+不论选取那种方式,都需要在响应时返回一个bundle,包含了各个资源,每个资源都会分配一个ID.		
+下面的代码是方式2的范例,仅供参考.	
+*	GlucoseBundleProcessor迭代所有资源,更新其cid:id的引用,核对是否存在Patient Device资源.		
+*	该例中忽略了所有服务器想要的资源 显然是不科学的		
+*	
+```	
+public class GlucoseBundleProcessor {
+
+    private MyMongo _myMongo;   //the database helper class
+
+    public GlucoseBundleProcessor(MyMongo myMongo){
+        _myMongo = myMongo;
+    }
+
+    //process with a Bundle...
+    public List<IResource> processGlucoseBundle(Bundle bundle) {
+        //generate a list of resources...
+        List<IResource> theResources = new ArrayList<IResource>();    //list of resources in bundle
+        for (BundleEntry entry : bundle.getEntries()) {
+            theResources.add(entry.getResource());
+        }
+        return this.process(theResources);
+    }
+
+
+    //process with a List of resources
+    public List<IResource> processGlucoseUploads(List<IResource> theResources) {
+        return this.process(theResources);
+    }
+
+
+    //process a bundle of glucose results, adding them to the repository...
+    private List<IResource> process(List<IResource> theResources) {
+        Patient patient = null;     //this will be the patient resource. There should only be one....
+        Device device = null;       //this will be the device resource. There should only be one....
+        List<IResource> insertList = new ArrayList<IResource>();    //list of resource to insert...
+
+        //First pass: assign all the CID:'s to a new ID. For more complex scenarios, we'd keep track of
+        //the changes, but for this profile, we don't need to...
+        //Note that this processing is highly specific to this profile !!! (For example, we ignore resources we don't expect to see)
+        for (IResource resource : theResources) {
+            String currentID = resource.getId().getValue();
+            if (currentID.substring(0,4).equals("cid:")) {
+                //Obviouslym the base URL should not be hard coded...
+                String newID = "http://myUrl/" + java.util.UUID.randomUUID().toString();
+                resource.setId(new IdDt(newID));    //and here's the new URL
+            }
+
+            //if this resource is a patient or device, then set the appropriate objects. We'll use these to set
+            // the references in the Observations in the second pass. In real life we'd want to be sure there is only one of each...
+            if (resource instanceof Patient) {
+                patient = (Patient) resource;
+                //we need to see if there's already a patient with this identifier. If there is - and there is one,
+                //then we use that Patient rather than adding a new one.
+                // This could be triggered by a 'rel=search' link on the bundle entry in a generic routine...
+                IdentifierDt identifier = patient.getIdentifier().size() >0 ? patient.getIdentifier().get(0) : null;
+                if (identifier != null) {
+                    List<IResource> lst = _myMongo.findResourcesByIdentifier("Patient",identifier);
+                    if (lst.size() == 1) {
+                        //there is a single patient with that identifier...
+                        patient = (Patient) lst.get(0);
+                        resource.setId(patient.getId());    //set the identifier in the list. We need to return this...
+                    } else if (lst.size() > 1) {
+                        //here is where we ought to raise an error - we cannot know which one to use.
+                    } else {
+                        //if there isn't a single resource with this identifier, we need to add a new one
+                        insertList.add(patient);
+                    }
+                } else {
+                    insertList.add(patient);
+                }
+            }
+
+            //look up a Device in the same way as as for a Patient
+            if (resource instanceof Device) {
+                device = (Device) resource;
+                IdentifierDt identifier = device.getIdentifier().size() >0 ? device.getIdentifier().get(0) : null;
+                if (identifier != null) {
+                    List<IResource> lst = _myMongo.findResourcesByIdentifier("Device", identifier);
+                    if (lst.size() == 1) {
+                        device = (Device) lst.get(0);
+                        resource.setId(device.getId());    //set the identifier in the list. We need to retuen this...
+                    } else {
+                        insertList.add(device);
+                    }
+                } else {
+                    insertList.add(device);
+                }
+            }
+
+            if (resource instanceof Observation) {
+                //we always add observations...
+                insertList.add(resource);
+            }
+        }
+
+        //Second Pass: Now we re-set all the resource references. This is very crude, and rather manual.
+        // We also really ought to make sure that the patient and the device have been set.....
+        for (IResource resource : theResources) {
+            if (resource instanceof Observation) {
+                Observation obs = (Observation) resource;
+
+                //this will be the correct ID - either a new one from the bundle, or a pre-existing one...
+                obs.setSubject(new ResourceReferenceDt(patient.getId()));
+
+                //set the performer - there can be more than one in the spec, hence a list...
+                List<ResourceReferenceDt> lstReferences = new ArrayList<ResourceReferenceDt>();
+                lstReferences.add(new ResourceReferenceDt(device.getId()));
+                obs.setPerformer(lstReferences);
+            }
+        }
+
+        //Last pass - write out the resources
+        for (IResource resource : insertList) {
+            _myMongo.saveResource(resource);
+        }
+
+        //we return the bundle with the updated resourceID's - as per the spec...
+        return theResources;
+    }
+}
+```
+
+```
 @WebServlet(urlPatterns= {&quot;/fhir/service/glucoseprocessor&quot;}, displayName=&quot;Process Glucose bundle&quot;)
 public class GlucoseResultServlet extends HttpServlet {
 
@@ -116,17 +240,7 @@ public class GlucoseResultServlet extends HttpServlet {
     }
 
 }
+```
 
-</pre>
 
-The code is pretty well documented, and is certainly not intended to be production level code &#8211; just to show concepts. There&#8217;s stuff we had to do manually (like choosing the correct HAPI parser based on HTTP headers) that HAPI does automatically elsewhere &#8211; makes you appreciate the heavy lifting that it does!
 
-&nbsp;
-
-One thing we’ve not looked at is security. But – given that we’ve implemented OAuth2 as part of our SMART development, all we need to do is to ‘protect’ the root endpoint by requiring a valid Access Token to use the endpoint. Then, the client simply logs in before submitting a bundle.
-
-So that’s a simple app to process a specific type of bundle. Bundles are a very useful mechanism in FHIR to manage complexity (especially transactional complexity) and reduce the number of REST calls required when there are multiple resources to create or update.
-
-However, generic processing of bundles is quite complex – and specific use case processing will often be much simpler.
-
-As with many things in FHIR, there’s more than one way to achieve a specific objective, so choose the one that best meets the requirements.
