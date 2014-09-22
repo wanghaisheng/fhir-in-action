@@ -1,15 +1,15 @@
-[原文链接:SMART on FHIR: Part 1](http://fhirblog.com/2014/08/02/smart-on-fhir-part-1/)       
-	
-[另外一篇文章:SMART on FHIR – adding OAuth2英文版](http://fhirblog.com/2014/08/12/smart-on-fhir-adding-oauth2/)	
+[原文链接:SMART on FHIR: Part 1](http://fhirblog.com/2014/08/02/smart-on-fhir-part-1)
 
-[另外一篇文章:SMART on FHIR – adding OAuth2中文版](SMART_on_FHIR_adding_OAuth2.md)	
+[另外一篇文章:SMART on FHIR – adding OAuth2英文版](http://fhirblog.com/2014/08/12/smart-on-fhir-adding-oauth2)
+
+[另外一篇文章:SMART on FHIR – adding OAuth2中文版](SMART_on_FHIR_adding_OAuth2.md)
 [第七届connectathon](http://wiki.hl7.org/index.php?title=FHIR_Connectathon_7 "FHIR_Connectathon_7")眼看着就要开始了, 之前的[一篇里](FHIR_Connectathon7_for_Java_Dummies.md)我们讨论了其中第一个场景(Patient的访问)，其中利用一些开源库进行了简单的实现(btw 你完全可以不使用这些开源框架，使用自己熟悉的平台和编程语言即可).
 
-这篇主要探讨一下第三个场景如何实现[SMART on FHIR](http://wiki.hl7.org/index.php?title=FHIR_Connectathon_7#Track_3_-_SMART_on_FHIR "FHIR_Connectathon_7#Track_3_-_SMART_on_FHIR"). 对于这个场景具体的描述请参考[7thConnectathon_tracks场景说明](7thConnectathon_tracks.md) – 其核心是构建一个标准，不同的独立开发APP/应用程序能够安全的访问存储在任何支持这种标准的服务器上的数据-电子病历、患者门户、区域平台相当于这里的应用程序，而类如苹果的HealthKit就是服务器，而苹果定义的HealthKit的接口就是我们所说的标准，这个比方打的不太恰当，但大致上是这么个意思。 
+这篇主要探讨一下第三个场景如何实现[SMART on FHIR](http://wiki.hl7.org/index.php?title=FHIR_Connectathon_7#Track_3_-_SMART_on_FHIR "FHIR_Connectathon_7#Track_3_-_SMART_on_FHIR"). 对于这个场景具体的描述请参考[7thConnectathon_tracks场景说明](7thConnectathon_tracks.md) – 其核心是构建一个标准，不同的独立开发APP/应用程序能够安全的访问存储在任何支持这种标准的服务器上的数据-电子病历、患者门户、区域平台相当于这里的应用程序，而类如苹果的HealthKit就是服务器，而苹果定义的HealthKit的接口就是我们所说的标准，这个比方打的不太恰当，但大致上是这么个意思。
 
- 
 
-第一步，我们先实现一个简单的服务器，主要是参考[Smart Server快速入门](http://docs.smartplatforms.org/tutorials/server-quick-start/), 如需深入了解，请细读该文档. 这篇文章中的服务器没有考虑安全性，后续的[SMART on FHIR adding OAuth2](SMART_on_FHIR_adding_OAuth2.md)中会详细介绍如何添加安全性.      
+
+第一步，我们先实现一个简单的服务器，主要是参考[Smart Server快速入门](http://docs.smartplatforms.org/tutorials/server-quick-start/), 如需深入了解，请细读该文档. 这篇文章中的服务器没有考虑安全性，后续的[SMART on FHIR adding OAuth2](SMART_on_FHIR_adding_OAuth2.md)中会详细介绍如何添加安全性.
 
 这里假设我们的服务器是一个电子病历系统, 用户可以通过SMART团队所开发的[儿童成长曲线](https://fhir.smartplatforms.org/apps/growth-chart/launch.html?fhirServiceUrl=https://fhir-open-api.smartplatforms.org&amp;patientId=1482713)的APP来访问其中的数据.
 
@@ -21,14 +21,14 @@
 
 在这篇里面，我们要做如下内容:
 
-*   一个HTML页面，用来模仿电子病历系统，当然也要有一个启动按钮 
+*   一个HTML页面，用来模仿电子病历系统，当然也要有一个启动按钮
 *   FHIR [Patient](http://www.hl7.org/implement/standards/fhir/patient.html) endpoint，能够返回患者的基本/人口统计学信息
 *   FHIR [Observation](http://www.hl7.org/implement/standards/fhir/observation.html) endpoint，能够返回患者的生命体征等观察项的信息(如身高、体重、BMI等).
 
 HTML页面很简单，加入如下的Jquery代码即可。 其他的内容需要大家自己动手。
 
 
-    
+
 	$(document).ready(function(){
 	      //the url to launch the app (hardcoded patientID, and local server)
 	      var url = "https://fhir.smartplatforms.org/apps/growth-chart/launch.html?";
@@ -74,7 +74,7 @@ Observation Provider如下:
 	    public List&amp;amp;lt;Observation&amp;amp;gt; getObservationBySubject(@RequiredParam(name = Observation.SP_SUBJECT) StringDt theSubject,
 	                                                     @RequiredParam(name = Observation.SP_NAME) TokenOrListParam theObsNames) {
 	        List&amp;amp;lt;Observation&amp;amp;gt; lstObservations = new ArrayList&amp;amp;lt;Observation&amp;amp;gt;();
-	 
+
 	        //emulates calling an existing non-FHIR REST service and getting a JSON object back...
 	        //we'd probably pass across the theObsNames to only return the list that we want
 	        InputStream is = null;
@@ -86,7 +86,7 @@ Observation Provider如下:
 	            JsonReader rdr = Json.createReader(is);
 	            JsonObject obj = rdr.readObject();
 	            //assume that the json structure is {data[{id:,unit:,code:,value:,date: }]}
-	 
+
 	            JsonArray results = obj.getJsonArray(&amp;amp;quot;data&amp;amp;quot;);
 	            SimpleDateFormat format = new SimpleDateFormat(&amp;amp;quot;yyyy-MM-dd'T'HH:mm:ss&amp;amp;quot;);
 	            for (JsonObject result : results.getValuesAs(JsonObject.class)) {
@@ -97,7 +97,7 @@ Observation Provider如下:
 	                String display = result.getJsonString(&amp;amp;quot;display&amp;amp;quot;).getString();
 	                double value =  result.getJsonNumber(&amp;amp;quot;value&amp;amp;quot;).doubleValue();
 	                Date date = format.parse(result.getJsonString(&amp;amp;quot;date&amp;amp;quot;).getString());
-	 
+
 	                //create an Observation resource
 	                Observation obs = new Observation();
 	                obs.setId(id);
@@ -107,11 +107,11 @@ Observation Provider如下:
 	                obs.setValue(quantityDt);
 	                obs.setStatus(ObservationStatusEnum.FINAL);
 	                obs.setReliability(ObservationReliabilityEnum.OK);
-	 
+
 	                //the text...
 	                obs.getText().setDiv(result.getJsonString(&amp;amp;quot;date&amp;amp;quot;).getString() + &amp;amp;quot; &amp;amp;quot; + display + &amp;amp;quot; &amp;amp;quot; + value);
 	                obs.getText().setStatus(NarrativeStatusEnum.GENERATED);
-	 
+
 	                //and add to the list...
 	                lstObservations.add(obs);
 	            }
@@ -128,7 +128,7 @@ Observation Provider如下:
 	            }
 	        }
 	        return lstObservations;
-	 
+
 	    }
 	}
 这个provider类似于一个代理，现有的FHIR服务器可能支持类似的功能，但接口不是FHIR形式的.对于系统的改造 大多数情况应该是这样的。

@@ -13,3 +13,4 @@ FHIR ,a new emerging and  appealing healthcare standards, with the all difficult
 参考资料 Reference:
 1.	[David Hay`s blog](http://fhirblog.com/)
 2.	[硕士论文](https://github.com/JaneBlue/PPTpaper)
+3.  [Ewout Kramer`s blog](http://thefhirplace.com/)

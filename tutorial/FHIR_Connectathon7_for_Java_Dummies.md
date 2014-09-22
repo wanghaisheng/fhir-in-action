@@ -1,4 +1,4 @@
-[原文链接:FHIR Connectathon 7 for Java Dummies](http://fhirblog.com/2014/07/31/fhir-connectathon-7-for-java-dummies/)
+[原文链接:FHIR Connectathon 7 for Java Dummies](http://fhirblog.com/2014/07/31/fhir-connectathon-7-for-java-dummies)
 
 FHIR Connectathon 7中罗列了三个应用场景.
 *	一是对Patient资源的处理  包括了新增,修改和查询等

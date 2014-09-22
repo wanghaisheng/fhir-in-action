@@ -1,155 +1,143 @@
-[原文链接:FHIR Connectathon 7](http://wiki.hl7.org/index.php?title=FHIR_Connectathon_7/)       
+[原文链接:FHIR Connectathon 7](http://wiki.hl7.org/index.php?title=FHIR_Connectathon_7)
 ## Connectathon tracks
+**编者注:为了直观的了解目前FHIR标准的进展以及其现阶段能用来做什么，特地从wiki上摘录下来**
+这部分介绍第7届connectathon中将要进行演示的场景.大致可分为两类，Track 1 是针对不熟悉FHIR的新手.  Track 2适合已经对FHIR有所了解的开发人员.
 
-This section lists the scenarios that are proposed for this connectathon. More detail will be added when approved.  The scenarios are grouped according to two tracks.  Track 1 is for those new to FHIR and requires minimal preparation in advance of the connectathon (at least for client applications).  Track 2 is for those with some experience with the use of FHIR (or willing to devote up-front time to connectathon preparation) and exercises a more complete set of behavior designed to reflect a full production experience.
+###  Track 1 - Patient
 
-###  Track 1 - Patient 
+前置条件: 无
 
-If creating a client, this track should require minimal work in advance of the connectathon, though at least a bit of playing is recommended.  If creating a server, advanced preparation will be required, but this scenario should somewhat limit the effort involved.
+####  1. 注册一个新的patient
 
-Pre-requisites: none
+*   操作: (Patient Demographics consumer) 新建一个patient，调用Patient Service进行保存. 客户端可以为患者分配Id.
 
-####  1. Register a new patient 
+*   前置条件: 操作之前该Patient并不存在
 
-*   Action: (Patient Demographics consumer) creates a new patient and save to Patient Service. The client can assign the Id.
+*   成功条件: 服务器上成功创建该Patient(use browser to inspect Patient)
 
-*   Precondition: Patient does not exist in service prior to action
+*   加分项: Patient资源包含扩展
 
-*   Success Criteria: Patient created correctly on server (use browser to inspect Patient)
+&gt;&gt;备注: 客户端不一定非要给资源的ID赋值. 但如果是服务器分配的ID,要求客户端能够在服务器的响应获取该id .
 
-*   Bonus point: The Patient resource has an extension
+####  2. 更新patient信息
 
-&gt;&gt;Note: the requirement for the client to assign the Id has been relaxed. However, if the server assigns the Id, then the client will need to be able to retrieve the Id from the server response or by a patient query.
+*   操作: (Patient Demographics consumer) 更新了场景 #1中所创建的患者信息，调用Patient Service更新服务器端的信息. 通过id来调用patient资源.
 
-####  2. Update a patient 
+*   前置条件: 服务器上已经创建了Patient资源
 
-*   Action: (Patient Demographics consumer) updates the patient created in scenario #1 and updates to Patient Service. The patient is retrieved by Id.
+*   成功条件: 服务器上的Patient资源成功更新 (use browser to inspect Patient)
 
-*   Precondition: Patient has been created
+*   加分项 #1: 更新的患者资源中包含了扩展,但并不对扩展项进行修改 .
 
-*   Success Criteria: Patient updated on server (use browser to inspect Patient)
+*   加分项 #2: 更新的患者资源中包含了扩展,同时对扩展项进行修改.
 
-*   Bonus Point #1: Update a patient that has extensions, but leaving the extension untouched.
+####  3. 检索Patient 历史记录
 
-*   Bonus Point #2: Update a patient that has extensions, and update the extension also.
+*   操作: (Patient Demographics consumer) 调用patient Service 查询Patient的历史记录
 
-####  3. Retrieve Patient history 
+*   前置条件:  已经存在一个patient资源，并对其进行了至少一次更新
 
-*   Action: (Patient Demographics consumer) searches the patient Service for the history of a Patient
+*   成功条件: 能够成功获得patient历史记录. (use browser query Patient Service)
 
-*   Precondition:  There is a patient that has at least one update
+*   加分项: UI上可以展示患者的历史记录
 
-*   Success Criteria: patients history displayed in interface. (use browser query Patient Service)
+####  4. 根据姓名查询patient
 
-*   Bonus point: the UI allows the user to display previous versions of the Patient
+*   操作: (Patient Demographics consumer) 调用patient Service，根据患者的given name来查询患者
 
-####  4. Search for a patient on name 
+*   前置条件: 服务器上存在Patients，且name字段有值
 
-*   Action: (Patient Demographics consumer) searches the patient Service for patients with a given name
+*   成功条件: 界面上展示出patients(use browser query to confirm)
 
-*   Precondition: Patients with that name have  been created
+参考资料:
 
-*   Success Criteria: patients displayed in interface. (use browser query to confirm)
+*   [Java客户端实例](http://fhirblog.com/2014/07/31/fhir-connectathon-7-for-java-dummies/).
 
-Some help links:
+*   [.net 客户端实例](http://fhirblog.com/2014/06/29/c-fhir-client/).
 
-*   [Java client sample](http://fhirblog.com/2014/07/31/fhir-connectathon-7-for-java-dummies/).
+###  Track 2 - Profile
 
-*   [.net client sample](http://fhirblog.com/2014/06/29/c-fhir-client/).
+分三个步骤:
 
-###  Track 2 - Profile 
+*   生成 profiles 和 valuesets
 
-This track explores interoperability between conformance tooling. There is 3 parts to this track:
+*   创建服务端，用以测试一致性
 
-*   generating profiles and valuesets
+*   实现测试一致性的过程(服务器端和客户端都可以)
 
-*   getting a server to test conformance
+这里也尝试使用了profile tags标签.
 
-*   implementing a process (server or client) that tests for conformance
+####  1. 创建 Profiles 和 Value Sets
 
-The track also explores the use of profile tags.
+只要能够生成Profiles and/or value sets就好了
 
-####  1. Creating Profiles and Value Sets 
+*   创建一个profile and/or valuesets
 
-This is for any process that produces Profiles and/or value sets
+    *   构建方法不限-可以手动编码，也可以从其他格式转换得到，以可以使用某些编辑工具
 
-*   Create a profile and/or valuesets
-
-    *   the method of creation is not fixed - it can be by hand, by some conversion process from other formats, or by some tool to profile the content
-
-*   The profile should have these properties:
+*   profile应包含的属性:
 
     *   Profile on Observation
 
-        *   fix observation.name to a limited set of LOINC codes
-    *   fix observation.value to a particular type
-    *   fix observation.value.units
+        *   固定observation.name为某些LOINC code
+        *   固定observation.value为某个类型
+        *   固定observation.value.units
+        *   固定一到多个属性的基数
+        *   固定reliability 和 status的值
 
-        *   fix one or more other attributes to max cardinality ..0
+    *   将构建好的profile提交个profile库
 
-        *   fix the value of reliability and status
+        *   取保profile库中的profile/value set 引用准确
 
-*   upload (create/update) the created resources on a registry
+    *   创建一个可以通过和失败的资源实例，利用FHIR中提供的校验工具根据profile来校验它们 (可以从FHIR DSTU中下载)
 
-    *   must get profile/value set references correct on the registry
 
-*   create pass and fail resources, and test them against the profile using the FHIR validation tool (from FHIR DSTU downloads)
+####  2. 创建服务器，供测试一致性之用
 
-For an example of the kind of profile that is intended, see ||link to be provided||
+*   已经有了一些observation resources实例 (zip file to be posted here)
 
-####  2. Getting a server to test conformance 
+*   已经创建好了一个profile (see below)
 
-*   Given a set of observation resources (zip file to be posted here)
+*   调用服务器上的校验操作，对提交的资源进行校验
 
-*   and a profile (see below)
-
-*   submit the resource for validation using the validation operation on a server
-
-    *   there are no rules about how the submission is prompted
-
-        *   the server [http://fhir.healthintersections.com.au/open](http://fhir.healthintersections.com.au/open) is available, and should be the first system to test on, other servers from #3 below should be tested too
-
-        *   the validation operation requires that the profile be tagged with the full URL of the profile *on the server being tested*
-
-        *   the client must process the return response correctly (pass | fail, not be mislead by hints and warnings
+    *   并不规定如何提交资源
+    *   优先使用该服务器 [http://fhir.healthintersections.com.au/open](http://fhir.healthintersections.com.au/open) 也可使用如下#3中的一些服务器
+    *   校验操作要求profile中的tag为profile所在的的服务器完整URL
+    *   客户端必须能够正确处理响应 (成功 | 失败)
 
 *   the profile master is here (link to be provided). Consult the server administrator for the correct profile tag for the test profile
 
-####  3. Server Validation 
+####  3. 服务器校验 Validation
 
 *   host a Profile and value set registry
 
-*   provide an implementation of the validation operation (at the resource level, no need to implement it at the instance level)
+*   实现校验操作 (只需在资源类型层面，无需到资源实例层面)
 
-*   correctly process profile tags on the validation operation
-*   correctly validate the submitted resource against the identified profile
-    *   pass|fail outcome must match those produced by the FHIR validation tool (from FHIR DSTU downloads)
+*   在校验过程中正确处理profile tags
+*   根据可标识的profile正确的校验提交的资源
+*   成功|失败的结果必须与FHIR校验工具的结果保存一致
 
-###  Track 3 - SMART on FHIR 
+###  Track 3 - SMART on FHIR
 
-This track is the experimental track, focusing on user-facing apps
-that launch from an EHR or PHR. SMART on FHIR
-uses open standards (FHIR, OAuth2, OpenID Connect) to provide a platform
-for health apps that integrate with existing Health IT systems.
+实验性质，关注面向用户的可在EHR/PHR系统界面中启动/调用APP. SMART on FHIR使用开放标准(FHIR, OAuth2, OpenID Connect)来构建了一个医疗APP的平台，这个平台能够与现有的医疗信息系统进行集成.
 
-*   For an overview, see [http://docs.smartplatforms.org/](http://docs.smartplatforms.org/)
+*   大概情况请参考 [http://docs.smartplatforms.org/](http://docs.smartplatforms.org/)
 
-*   Questions? Visit the [SMART on FHIR Google Group](https://groups.google.com/forum/#!forum/smart-on-fhir).
+*   有问题请访问[SMART on FHIR Google Group](https://groups.google.com/forum/#!forum/smart-on-fhir).
 
-####  1. Build a SMART Server 
+####  1. 构建SMART服务器
 
-Demonstrate a SMART on FHIR server. A successful server will do the following:
+一个服务器需要实现如下功能:
 
-1. Support <tt>/Patient</tt> and <tt>/Observation</tt> end points, 
-so an app can retrieve demographics and vital signs. 
+1. 支持 <tt>/Patient</tt> and <tt>/Observation</tt> end points,
+APP可以获取人口统计学和生命体征信息.
 
-2. Support the SMART on FHIR launch and authorization,
-so an app can request permissions and learn patient context via OAuth2.
+2. 支持SMART on FHIR的启动和授权，APP可以获得许可，利用OAuth2得知患者的语境信息.
 
-**We've created a [quick-start guide for SMART servers](http://docs.smartplatforms.org/tutorials/server-quick-start/)**
-with examples of URLs, parameters, LOINC codes, and data payloads you'll need to get started.
+**[SMART servers快速入门](http://docs.smartplatforms.org/tutorials/server-quick-start/)**
+，其中提供了URL、参数、LOINC编码和数据负载的实例.
 
-*   Other references
+*   其他参考资料
 <dl>
 <dd>[http://fhirblog.com/2014/08/02/smart-on-fhir-part-1/](http://fhirblog.com/2014/08/02/smart-on-fhir-part-1/)
 </dd>
@@ -157,39 +145,34 @@ with examples of URLs, parameters, LOINC codes, and data payloads you'll need to
 </dd>
 </dl>
 
-####  2. Build a SMART App 
+####  2. 构建 SMART App
 
-Demonstrate a SMART on FHIR client. A successful client will be a Web app
-or mobile app that can run against our SMART on FHIR testing server. It should:
+客户端可以是web app或者是mobile app，可以在SMART on FHIR testing server上运行. 应满足如下功能:
 
-*   Talk to SMART's [sandbox server](https://fhir-api.smartplatforms.org) (and any other servers presented at the Connectathon)
+*   能够与SMART's [sandbox server](https://fhir-api.smartplatforms.org) 通信
 
-*   Authorize to access patient data
+*   通过授权获取患者数据
 
-*   Retrieve patient data including demographics, vitals, and labs
+*   获取诸如人口统计学、体征和实验室检查检验等数据
 
-*   Present some useful view (can be just straight data table) of patient data
+*   提供一些患者数据的展示，最简单的表格也可以
 
-**We've created a [quick-start guide for SMART apps](http://docs.smartplatforms.org/tutorials/testing/)**
-with code and examples to get you started.
+**[SMART apps快速入门](http://docs.smartplatforms.org/tutorials/testing/)**包含了一些代码和范例.
 
-You may also want to explore source code for our
+如需更多信息，可查看源代码
 [sample apps on GitHub](https://github.com/smart-on-fhir/apps/tree/gh-pages/static/apps).
 
-You can get started developing from `[http://localhost](http://localhost)`
-without registering your app -- but when you want to get your app
-running on the Web, just [follow our self-service app registration instructions](http://docs.smartplatforms.org/sandbox/howto/).
+最开始可以在本地进行开发 `[http://localhost](http://localhost)`
+无需进行注册 --如果你想在网络上运行你的APP， 只需[按照app 注册指南操作即可](http://docs.smartplatforms.org/sandbox/howto/).
 
-###  Track 4 - DICOMweb (Joint with DICOM) 
+###  Track 4 - DICOMweb (Joint with DICOM)
 
-[DICOMweb](http://dicomweb.hcintegrations.ca/#/home) is the web standard for medical imaging. It is primarily a set of RESTful services, enabling web developers to unlock the power of healthcare images using industry-renowned toolsets.
+[DICOMweb](http://dicomweb.hcintegrations.ca/#/home)是医学影像的web标准. 主要是一些RESTFUL服务接口，能够让web应用开发人员充分利用既有的工具来实现医学影像的功能.
 
-Although DICOMweb's REST interface and serialization (of DICOM objects) differs from FHIR, FHIR's [ImagingStudy](http://www.hl7.org/implement/standards/fhir/imagingstudy.html) has been developed in cooperation with DICOM to make it easy for DICOM servers to expose their data as FHIR ImagingStudy on the [FHIR REST api](http://www.hl7.org/implement/standards/fhir/http.html), and conversely for natively FHIR servers to expose their ImagingStudy Resources using DICOMweb's REST api.
+尽管DICOMweb's REST接口和序列化格式与 FHIR不同, FHIR中的 [ImagingStudy](http://www.hl7.org/implement/standards/fhir/imagingstudy.html)是联合DICOM一起开发的，为的是能够让DICOM服务器利用FHIR ImagingStudy通过[FHIR REST api](http://www.hl7.org/implement/standards/fhir/http.html)暴露服务器上的数据,反过来，对于FHIR服务器而言，能够利用ImagingStudy Resources 通过DICOMweb's REST api暴露服务器上的数据.
 
-As both DICOMweb and the FHIR ImagingStudy are recent additions to the standards, the ultimate goal of this track is not just to showcase working implementations but rather to receive feedback on where FHIR and DICOMweb are misaligned based on these implementation efforts.
+利用[WADO-RS](http://dicomweb.hcintegrations.ca/#/wado):
 
-We propose to focus on [WADO-RS](http://dicomweb.hcintegrations.ca/#/wado) to:
+*   对于FHIR servers: 通过DICOMweb's REST interface来暴露FHIR ImagingStudy资源,将ImagingStudy转换为[DICOM model](http://dicomweb.hcintegrations.ca/#/xml)的xml和或json 格式
 
-*   For FHIR servers: Expose the FHIR ImagingStudy using DICOMweb's REST interface, converting the ImagingStudy to the xml and/or json [DICOM model](http://dicomweb.hcintegrations.ca/#/xml)
-
-*   For DICOMweb servers: Combine a study with its series and instances as and expose it as a FHIR ImagingStudy resource, using FHIR's REST interface (basically, a [read](http://www.hl7.org/implement/standards/fhir/http.html#read) operation) and FHIR's xml and/or json [serialization model](http://www.hl7.org/implement/standards/fhir/xml.html).
+*   对于DICOMweb servers: 将一系列study实例整合成一个FHIR ImagingStudy资源, 通过 FHIR's REST interface (basically, a [read](http://www.hl7.org/implement/standards/fhir/http.html#read) operation)暴露资源，将FHIR的ImagingStudy转换为[DICOM serialization model](http://www.hl7.org/implement/standards/fhir/xml.html)的 xml和或json格式 .
