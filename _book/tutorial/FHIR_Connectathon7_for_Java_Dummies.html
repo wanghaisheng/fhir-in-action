@@ -1,0 +1,382 @@
+<!DOCTYPE HTML>
+<html lang="en-US" >
+    
+    <head>
+        
+        <meta charset="UTF-8">
+        <title>FHIR_Connectathon7_for_Java_Dummies | fhir-in-action</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 1.0.3">
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+        
+    
+    
+    
+    <link rel="next" href="../tutorial/Processing_Fhir_Bunles_Using_HAPI_FHIR.html" />
+    
+    
+    <link rel="prev" href="../introduction/README.html" />
+    
+
+        
+    </head>
+    <body>
+        
+        
+<link rel="stylesheet" href="../gitbook/style.css">
+
+
+        
+    <div class="book"  data-level="1.1" data-basepath=".." data-revision="1411367778637">
+    
+
+<div class="book-summary">
+    <div class="book-search">
+        <input type="text" placeholder="Type to search" class="form-control" />
+    </div>
+    <ul class="summary">
+        
+    	
+    	
+    	
+
+        
+
+        
+    
+        
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="../index.html">
+                        <i class="fa fa-check"></i>
+                        
+                         前言
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1" data-path="introduction/README.html">
+            
+                
+                    <a href="../introduction/README.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                         FHIR简介
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter active" data-level="1.1" data-path="tutorial/FHIR_Connectathon7_for_Java_Dummies.html">
+            
+                
+                    <a href="../tutorial/FHIR_Connectathon7_for_Java_Dummies.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.</b>
+                        
+                         FHIR_Connectathon7_for_Java_Dummies
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.2" data-path="tutorial/Processing_Fhir_Bunles_Using_HAPI_FHIR.html">
+            
+                
+                    <a href="../tutorial/Processing_Fhir_Bunles_Using_HAPI_FHIR.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.2.</b>
+                        
+                         Processing_Fhir_Bunles_Using_HAPI_FHIR
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.3" data-path="tutorial/SMART_on_FHIR_Part1.html">
+            
+                
+                    <a href="../tutorial/SMART_on_FHIR_Part1.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.3.</b>
+                        
+                         SMART on_FHIR_Part1
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.4" data-path="tutorial/7thConnectathon_tracks.html">
+            
+                
+                    <a href="../tutorial/7thConnectathon_tracks.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.4.</b>
+                        
+                         7th Connectathon tracks
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.5" data-path="tutorial/SMART_on_FHIR_adding_OAuth2.html">
+            
+                
+                    <a href="../tutorial/SMART_on_FHIR_adding_OAuth2.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.5.</b>
+                        
+                         SMART on FHIR – adding OAuth2
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+
+        
+        <li class="divider"></li>
+        <li>
+            <a href="http://www.gitbook.io/" target="blank" class="gitbook-link">Published using GitBook</a>
+        </li>
+        
+    </ul>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header">
+    <!-- Actions Left -->
+    <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
+    <a href="#" class="btn pull-left toggle-search" aria-label="Toggle search"><i class="fa fa-search"></i></a>
+    
+    <div id="font-settings-wrapper" class="dropdown pull-left">
+        <a href="#" class="btn toggle-dropdown" aria-label="Toggle font settings"><i class="fa fa-font"></i>
+        </a>
+        <div class="dropdown-menu font-settings">
+    <div class="dropdown-caret">
+        <span class="caret-outer"></span>
+        <span class="caret-inner"></span>
+    </div>
+
+    <div class="buttons">
+        <button type="button" id="reduce-font-size" class="button size-2">A</button>
+        <button type="button" id="enlarge-font-size" class="button size-2">A</button>
+    </div>
+
+    <div class="buttons font-family-list">
+        <button type="button" data-font="0" class="button">Serif</button>
+        <button type="button" data-font="1" class="button">Sans</button>
+    </div>
+
+    <div class="buttons color-theme-list">
+        <button type="button" id="color-theme-preview-0" class="button size-3" data-theme="0">White</button>
+        <button type="button" id="color-theme-preview-1" class="button size-3" data-theme="1">Sepia</button>
+        <button type="button" id="color-theme-preview-2" class="button size-3" data-theme="2">Night</button>
+    </div>
+</div>
+
+    </div>
+
+    <!-- Actions Right -->
+    
+    <div class="dropdown pull-right">
+        <a href="#" class="btn toggle-dropdown" aria-label="Toggle share dropdown"><i class="fa fa-share-alt"></i>
+        </a>
+        <div class="dropdown-menu font-settings dropdown-left">
+            <div class="dropdown-caret">
+                <span class="caret-outer"></span>
+                <span class="caret-inner"></span>
+            </div>
+            <div class="buttons">
+                <button type="button" data-sharing="twitter" class="button">Twitter</button>
+                <button type="button" data-sharing="google-plus" class="button">Google</button>
+                <button type="button" data-sharing="facebook" class="button">Facebook</button>
+                <button type="button" data-sharing="weibo" class="button">Weibo</button>
+                <button type="button" data-sharing="instapaper" class="button">Instapaper</button>
+            </div>
+        </div>
+    </div>
+    
+
+    
+    <a href="#" target="_blank" class="btn pull-right google-plus-sharing-link sharing-link" data-sharing="google-plus" aria-label="Share on Google Plus"><i class="fa fa-google-plus"></i></a>
+    
+    
+    <a href="#" target="_blank" class="btn pull-right facebook-sharing-link sharing-link" data-sharing="facebook" aria-label="Share on Facebook"><i class="fa fa-facebook"></i></a>
+    
+    
+    <a href="#" target="_blank" class="btn pull-right twitter-sharing-link sharing-link" data-sharing="twitter" aria-label="Share on Twitter"><i class="fa fa-twitter"></i></a>
+    
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../" >fhir-in-action</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-gitbook_2767">
+                    
+                        <p><a href="http://fhirblog.com/2014/07/31/fhir-connectathon-7-for-java-dummies" target="_blank">原文链接:FHIR Connectathon 7 for Java Dummies</a></p>
+<p>FHIR Connectathon 7中罗列了三个应用场景.</p>
+<ul>
+<li>一是对Patient资源的处理  包括了新增,修改和查询等</li>
+<li>二是对Profile资源的处理  包括了新增和校验等</li>
+<li>三是基于FHIR的SMART APP的server端和client端的编程</li>
+<li>四是对FHIR在DICOM中的应用演示        主要是DICOMweb协议与FHIR中ImageStudy资源的整合:
+对于FHIR服务器而言,能够暴露DICOMWEB接口 提供ImageStudy资源 并能够将其转换为DICOM 模型的xml json格式;
+对于DICOMWEB 服务器 构建出ImageStudy资源,暴露FHIR 的rest接口.</li>
+</ul>
+<p>让我们看一下利用现有的FHIR开源代码如何来实现这些场景.
+所选场景:第一个
+开发语言:JAVA(安装配置略)
+IDE:IDEA community版本
+开源库:HAPI-FHIR
+测试系统:UBUNTU14.04 32位</p>
+<ol>
+<li>新建maven工程,假设为FHIRConnectation7UseCase1,</li>
+<li>在pom文件中按照[HAPI-FHIR官网[()上的说明进行配置即可    为了偷懒起见,我直接copy了<a href="https://github.com/jamesagnew/hapi-fhir/blob/master/restful-server-example/pom.xml" target="_blank">源码附带的例子中的pom</a></li>
+<li>将main类中的代码用如下代码替换</li>
+</ol>
+<pre><code>import ca.uhn.fhir.context.FhirContext;
+import ca.uhn.fhir.model.api.Bundle;
+import ca.uhn.fhir.model.dstu.resource.Conformance;
+import ca.uhn.fhir.model.dstu.resource.Patient;
+import ca.uhn.fhir.model.dstu.valueset.AdministrativeGenderCodesEnum;
+import ca.uhn.fhir.rest.client.IGenericClient;
+import ca.uhn.fhir.rest.server.exceptions.ResourceNotFoundException;
+
+//Code copied very substantially from http://jamesagnew.github.io/hapi-fhir/doc_rest_client.html
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        //create the FHIR context
+        FhirContext ctx = new FhirContext();
+        String serverBase = &quot;https://fhir.orionhealth.com/blaze/fhir&quot;;
+        IGenericClient client = ctx.newRestfulGenericClient(serverBase);
+
+        // Retrieve the server&#39;s conformance statement and print its description
+        Conformance conf = client.conformance();
+        System.out.println(conf.getDescription().getValue());
+
+
+        //Read a single patient
+        //String id = &quot;1&quot;;        //this is not found on the server, and will throw an exception
+        String id = &quot;77662&quot;;
+        try {
+            Patient patient = client.read(Patient.class, id);
+            //Do something with patient
+
+            // Change the patient gender
+            patient.setGender(AdministrativeGenderCodesEnum.M);
+            //and save...
+            client.update(id, patient);
+
+        } catch (ResourceNotFoundException ex) {
+            System.out.println(&quot;No patient with the ID of &quot; + id);
+        } catch (Exception ex){
+            System.out.println(&quot;Unexpected error: &quot; + ex.getMessage());
+        }
+
+        //Create a new Patient
+        Patient newPatient = new Patient();
+        newPatient.addIdentifier(&quot;urn:oid:2.16.840.1.113883.2.18.2&quot;, &quot;PRP1660&quot;);
+        newPatient.addName().addFamily(&quot;Power&quot;).addGiven(&quot;Cold&quot;);
+        client.create()
+                .resource(newPatient)
+                .encodedJson()
+                .execute();
+
+        //do a simple search
+        Bundle bundle = client.search()
+                .forResource(Patient.class)
+                .where(Patient.NAME.matches().value(&quot;eve&quot;))
+        .execute();
+        //bundle will be a HAPI bundle of patients
+        System.out.println(bundle.getTitle());
+        System.out.println(bundle.getEntries().size() + &quot; matches.&quot;);
+
+    }
+}
+</code></pre>
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="../introduction/README.html" class="navigation navigation-prev " aria-label="Previous page: FHIR简介"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="../tutorial/Processing_Fhir_Bunles_Using_HAPI_FHIR.html" class="navigation navigation-next " aria-label="Next page: Processing_Fhir_Bunles_Using_HAPI_FHIR"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="../gitbook/app.js"></script>
+
+    
+    <script src="https://cdn.mathjax.org/mathjax/2.4-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-mathjax/plugin.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"fontSettings":{"theme":null,"family":"sans","size":2}};
+    gitbook.start(config);
+});
+</script>
+
+        
+    </body>
+    
+</html>

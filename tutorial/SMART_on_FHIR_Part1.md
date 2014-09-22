@@ -3,6 +3,7 @@
 [另外一篇文章:SMART on FHIR – adding OAuth2英文版](http://fhirblog.com/2014/08/12/smart-on-fhir-adding-oauth2)
 
 [另外一篇文章:SMART on FHIR – adding OAuth2中文版](SMART_on_FHIR_adding_OAuth2.md)
+
 [第七届connectathon](http://wiki.hl7.org/index.php?title=FHIR_Connectathon_7 "FHIR_Connectathon_7")眼看着就要开始了, 之前的[一篇里](FHIR_Connectathon7_for_Java_Dummies.md)我们讨论了其中第一个场景(Patient的访问)，其中利用一些开源库进行了简单的实现(btw 你完全可以不使用这些开源框架，使用自己熟悉的平台和编程语言即可).
 
 这篇主要探讨一下第三个场景如何实现[SMART on FHIR](http://wiki.hl7.org/index.php?title=FHIR_Connectathon_7#Track_3_-_SMART_on_FHIR "FHIR_Connectathon_7#Track_3_-_SMART_on_FHIR"). 对于这个场景具体的描述请参考[7thConnectathon_tracks场景说明](7thConnectathon_tracks.md) – 其核心是构建一个标准，不同的独立开发APP/应用程序能够安全的访问存储在任何支持这种标准的服务器上的数据-电子病历、患者门户、区域平台相当于这里的应用程序，而类如苹果的HealthKit就是服务器，而苹果定义的HealthKit的接口就是我们所说的标准，这个比方打的不太恰当，但大致上是这么个意思。
