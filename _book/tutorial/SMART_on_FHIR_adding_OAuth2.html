@@ -18,6 +18,8 @@
     
     
     
+    <link rel="next" href="../tutorial/fhir_and_oauth2.html" />
+    
     
     <link rel="prev" href="../tutorial/7thConnectathon_tracks.html" />
     
@@ -31,7 +33,7 @@
 
 
         
-    <div class="book"  data-level="1.5" data-basepath=".." data-revision="1411367778637">
+    <div class="book"  data-level="1.5" data-basepath=".." data-revision="1411482096111">
     
 
 <div class="book-summary">
@@ -63,10 +65,10 @@
         </li>
     
         
-        <li class="chapter " data-level="1" data-path="introduction/README.html">
+        <li class="chapter " data-level="1" data-path="index.html">
             
                 
-                    <a href="../introduction/README.html">
+                    <a href="../index.html">
                         <i class="fa fa-check"></i>
                         
                             <b>1.</b>
@@ -153,6 +155,86 @@
                             <b>1.5.</b>
                         
                          SMART on FHIR – adding OAuth2
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.6" data-path="tutorial/fhir_and_oauth2.html">
+            
+                
+                    <a href="../tutorial/fhir_and_oauth2.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.6.</b>
+                        
+                         FHIR and OAuth2
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.7" data-path="tutorial/a_simple_oauth_client.html">
+            
+                
+                    <a href="../tutorial/a_simple_oauth_client.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.7.</b>
+                        
+                         A simple OAuth client
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.8" data-path="tutorial/fhir_oauth2_and_the_mobile_client.html">
+            
+                
+                    <a href="../tutorial/fhir_oauth2_and_the_mobile_client.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.8.</b>
+                        
+                         FHIR, Oauth2 and the Mobile client
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.9" data-path="tutorial/fhir_and_openid_connect.html">
+            
+                
+                    <a href="../tutorial/fhir_and_openid_connect.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.9.</b>
+                        
+                         FHIR and OpenID Connect
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.10" data-path="tutorial/fhir_securing_an_ecosystem.html">
+            
+                
+                    <a href="../tutorial/fhir_securing_an_ecosystem.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.10.</b>
+                        
+                         FHIR: Securing an ecosystem
                     </a>
                 
             
@@ -253,20 +335,23 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_2770">
+                    <section class="normal" id="section-gitbook_4657">
                     
-                        <p><a href="http://fhirblog.com/2014/08/12/smart-on-fhir-adding-oauth2/" target="_blank">原文链接:SMART on FHIR – adding OAuth2</a><br><a href="http://fhirblog.com/2014/08/02/smart-on-fhir-part-1" target="_blank">原文链接:SMART on FHIR: Part 1英文版</a><br><a href="SMART_on_FHIR_Part1.html">原文链接:SMART on FHIR: Part 1中文版</a>                </p>
-<p>在<a href="SMART_on_FHIR_Part1.html">SMART on FHIR: Part 1中文版</a> 基础上 ,利用SMART版本 的OAuth2 标准为其提供安全保障.这里还是沿用 <a href="http://jamesagnew.github.io/hapi-fhir/" target="_blank">HAPI开源库</a> 、Tomcat 和IntelliJ IDEA  IDE.            </p>
+                        <p><a href="http://fhirblog.com/2014/08/12/smart-on-fhir-adding-oauth2/" target="_blank">原文链接:SMART on FHIR – adding OAuth2</a></p>
+<p><a href="http://fhirblog.com/2014/08/02/smart-on-fhir-part-1" target="_blank">相关文章链接:SMART on FHIR: Part1英文版</a></p>
+<p><a href="SMART_on_FHIR_Part1.html">相关文章链接:SMART on FHIR: Part 1中文版</a></p>
+<p>在<a href="SMART_on_FHIR_Part1.html">SMART on FHIR: Part 1中文版</a> 基础上 ,利用SMART版本 的OAuth2 标准为其提供安全保障.这里还是沿用 <a href="http://jamesagnew.github.io/hapi-fhir/" target="_blank">HAPI开源库</a> 、Tomcat 和IntelliJ IDEA  IDE.</p>
 <p>这里的应用场景是假设我是已经登录了电子病历/区域平台的用户，我想利用一些外部的应用程序来实现一些其他功能，比如调用SMART团队开发的儿童生存曲线的APP。</p>
-<p>整体的架构如下所示：<br><a href="oauth2.png"><img src="oauth2.png?w=630&#038;h=470" alt="oauth2"></a>            </p>
-<p>这是一个web应用程序，发布在Tomcat上，其中暴露了FHIR data endpoints 和  OAuth endpoints .  SMART app部署在其他服务器上，在我们的页面上以iFrame的形式来调用. Tomcat server 上的数据可以存储在本地，但是这里调用的其他外部的FHIR服务器，其实就相当于外部FHIR服务器的一个代理。      </p>
-<p>使用 <a href="http://maven.apache.org/what-is-maven.html" target="_blank">Maven</a> 来管理项目代码.安装配置略。              </p>
-<p>在IDE中创建一个 “maven-archetype-webapp” 的maven项目. </p>
-<p>由于SMART客户端是一个运行在其他domain的JavaScript程序，对于我们的服务器而言，需要允许它访问我们的数据，为此需要添加对 <a href="http://en.wikipedia.org/wiki/Cross-origin_resource_sharing" target="_blank">CORS</a> 的支持，按照<a href="http://jamesagnew.github.io/hapi-fhir/doc_cors.html" target="_blank">HAPI中的说明 </a>，只需在pom.xml 添加dependency 来下载filter即可,修改web.xml file，修改其中的权限，可以直接从HAPI官网上的例子中复制.            </p>
+<p>整体的架构如下所示：
+<a href="oauth2.png"><img src="oauth2.png?w=630&#038;h=470" alt="oauth2"></a></p>
+<p>这是一个web应用程序，发布在Tomcat上，其中暴露了FHIR data endpoints 和  OAuth endpoints .  SMART app部署在其他服务器上，在我们的页面上以iFrame的形式来调用. Tomcat server 上的数据可以存储在本地，但是这里调用的其他外部的FHIR服务器，其实就相当于外部FHIR服务器的一个代理。</p>
+<p>使用 <a href="http://maven.apache.org/what-is-maven.html" target="_blank">Maven</a> 来管理项目代码.安装配置略。</p>
+<p>在IDE中创建一个 “maven-archetype-webapp” 的maven项目.</p>
+<p>由于SMART客户端是一个运行在其他domain的JavaScript程序，对于我们的服务器而言，需要允许它访问我们的数据，为此需要添加对 <a href="http://en.wikipedia.org/wiki/Cross-origin_resource_sharing" target="_blank">CORS</a> 的支持，按照<a href="http://jamesagnew.github.io/hapi-fhir/doc_cors.html" target="_blank">HAPI中的说明 </a>，只需在pom.xml 添加dependency 来下载filter即可,修改web.xml file，修改其中的权限，可以直接从HAPI官网上的例子中复制.</p>
 <p>接下来考虑如何SMART进行集成.  <a href="http://docs.smartplatforms.org/tutorials/server-quick-start/" target="_blank">SMART服务器端快速入门</a>提供了很详细的资料 – 总结一下:</p>
 <ol>
 <li><p>在EMR web 界面上, 新建一个 iframe, 将其指向 SMART应用程序, 进行一些基本的配置即可.
-比如              </p>
+比如</p>
 <html>
 <head>
   <title>OpenMRS-FHIR</title>
@@ -280,17 +365,17 @@
 </body>
 </html>
 </li>
-<li><p>SMART 应用程序从服务器上加载一致性声明/conformance                statement，这样就知道如何获取授权以及token的endpoint                </p>
+<li><p>SMART 应用程序从服务器上加载一致性声明/conformance                statement，这样就知道如何获取授权以及token的endpoint</p>
 </li>
-<li>SMART 应用程序调用authorization end point           </li>
-<li>假设通过授权,  endpoint会重新返回给 SMART 应用程序一个授权码     </li>
+<li>SMART 应用程序调用authorization end point</li>
+<li>假设通过授权,  endpoint会重新返回给 SMART 应用程序一个授权码</li>
 <li>SMART 应用程序使用获取的授权码再次调用 token endpoint,获取 Authorization Token.</li>
 <li>SMART 应用程序利用Authorization Token调用 EMR FHIR endpoints 来获取所需的数据，并进行展示.</li>
 </ol>
 <p>下一步构建 Authorization and Token end points, 告知SMART 应用程序如何找到它们。
 利用<a href="http://docs.smartplatforms.org/authorization/conformance-statement/" target="_blank">对Conformance资源的扩展可以实现</a>.</p>
 <p>首先:</p>
-<p>在我们演示用的电子病历系统中新增一个登录功能，用户发送登录信息到login endpoint,对登录信息进行校验，创建一个user token并保存在一个context对象当中，同时将其发送给本地的APP ，这样在启动时即可使用这个user token。由于系统用户同时也需要访问一些受限的资源，用户也会得到一个access token。          </p>
+<p>在我们演示用的电子病历系统中新增一个登录功能，用户发送登录信息到login endpoint,对登录信息进行校验，创建一个user token并保存在一个context对象当中，同时将其发送给本地的APP ，这样在启动时即可使用这个user token。由于系统用户同时也需要访问一些受限的资源，用户也会得到一个access token。</p>
 <p>Login servlet示例:</p>
 <pre><code>@WebServlet(urlPatterns= {&amp;quot;/auth/login&amp;quot;}, displayName=&amp;quot;Login&amp;quot;).
 public class Login extends HttpServlet {
@@ -358,8 +443,8 @@ public class Launch extends HttpServlet {
         }
     }
 }
-</code></pre><p>接下来是<strong>authorization</strong> end-point. 这里用用户token做启动token来确保请求方的可信，重定向到 <em>redirect_url</em>.           </p>
-<p>代码如下        </p>
+</code></pre><p>接下来是<strong>authorization</strong> end-point. 这里用用户token做启动token来确保请求方的可信，重定向到 <em>redirect_url</em>.</p>
+<p>代码如下</p>
 <pre><code>@WebServlet(urlPatterns= {&quot;/auth/authorize&quot;}, displayName=&quot;Authorize endpoint for FHIR Server&quot;)
 public class Authorize extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -405,8 +490,9 @@ public class Authorize extends HttpServlet {
 
     }
 }
-</code></pre><p>我们可以使用一个注册过程来存储应用程序的ID和回调URL来进一步确保安全性            </p>
-<p>这样我们就可以交换授权token的授权码。<br>如下是<strong>Token endpoint</strong>的范例:                </p>
+</code></pre><p>我们可以使用一个注册过程来存储应用程序的ID和回调URL来进一步确保安全性</p>
+<p>这样我们就可以交换授权token的授权码。
+如下是<strong>Token endpoint</strong>的范例:</p>
 <pre><code>@WebServlet(urlPatterns= {&quot;/auth/token&quot;}, displayName=&quot;Token endpoint for FHIR Server&quot;)
 public class Token extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -443,8 +529,8 @@ public class Token extends HttpServlet {
             out.println(&quot;{}&quot;);
         }
     }
-}    
-</code></pre><p>有了auth token之后就可以调用实际的FHIR endpoint.               </p>
+}
+</code></pre><p>有了auth token之后就可以调用实际的FHIR endpoint.</p>
 <pre><code>@Override
 public void handleRequest(SearchMethodBinding.RequestType theRequestType,
                           javax.servlet.http.HttpServletRequest theRequest,
@@ -475,8 +561,8 @@ public void handleRequest(SearchMethodBinding.RequestType theRequestType,
         }
     }
 }
-</code></pre><p>成功之后就会出现下图的效果 有点丑      </p>
-<p><a href="screen-shot-2014-08-12-at-10-58-22-am.png"><img src="screen-shot-2014-08-12-at-10-58-22-am.png?w=630&#038;h=213" alt="Screen Shot 2014-08-12 at 10.58.22 am"></a>              </p>
+</code></pre><p>成功之后就会出现下图的效果 有点丑</p>
+<p><a href="screen-shot-2014-08-12-at-10-58-22-am.png"><img src="screen-shot-2014-08-12-at-10-58-22-am.png?w=630&#038;h=213" alt="Screen Shot 2014-08-12 at 10.58.22 am"></a></p>
 <p>后续也应该考虑如何判断 Auth tokens是否过期。</p>
 
                     
@@ -488,8 +574,10 @@ public void handleRequest(SearchMethodBinding.RequestType theRequestType,
         </div>
 
         
-        <a href="../tutorial/7thConnectathon_tracks.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: 7th Connectathon tracks"><i class="fa fa-angle-left"></i></a>
+        <a href="../tutorial/7thConnectathon_tracks.html" class="navigation navigation-prev " aria-label="Previous page: 7th Connectathon tracks"><i class="fa fa-angle-left"></i></a>
         
+        
+        <a href="../tutorial/fhir_and_oauth2.html" class="navigation navigation-next " aria-label="Next page: FHIR and OAuth2"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
