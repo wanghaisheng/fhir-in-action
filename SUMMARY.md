@@ -12,4 +12,5 @@
    * [FHIR, Oauth2 and the Mobile client](tutorial/fhir_oauth2_and_the_mobile_client.md)
    * [FHIR and OpenID Connect](tutorial/fhir_and_openid_connect.md)
    * [FHIR: Securing an ecosystem](tutorial/fhir_securing_an_ecosystem.md)
-
+   * [Clinical resources in FHIR](tutorial/Clinical_resources_in_FHIR.md)
+   * [FHIR Medication lists revisited](tutorial/FHIR-Medication-lists-revisited.md)
