@@ -14,5 +14,5 @@
    * [FHIR: Securing an ecosystem](tutorial/fhir_securing_an_ecosystem.md)
    * [Clinical resources in FHIR](tutorial/Clinical_resources_in_FHIR.md)
    * [FHIR Medication lists revisited](tutorial/FHIR-Medication-lists-revisited.md)
-   * [Regional Shared Medications with FHIR](regional-shared-medications-with-fhir.md)
-   * [Updating the Medication List](updating-the-medication-list.md)
+   * [Regional Shared Medications with FHIR](tutorial/regional-shared-medications-with-fhir.md)
+   * [Updating the Medication List](tutorial/updating-the-medication-list.md)
