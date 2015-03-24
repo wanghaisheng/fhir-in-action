@@ -16,3 +16,6 @@
    * [FHIR Medication lists revisited](tutorial/FHIR-Medication-lists-revisited.md)
    * [Regional Shared Medications with FHIR](tutorial/regional-shared-medications-with-fhir.md)
    * [Updating the Medication List](tutorial/updating-the-medication-list.md)
+   * [Mapping HL7 Version 2 to FHIR Messages](tutorial/mapping-hl7-version-2-to-fhir-messages.md)   
+   * [FHIR Messages – part 2](tutorial/fhir-messages-part-2.md)      
+   * [More FHIR Messaging: ADT messages](tutorial/more-fhir-messaging-adt-messages.md) 
