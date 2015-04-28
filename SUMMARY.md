@@ -29,4 +29,4 @@
    * [SMART on FHIR Part2– adding OAuth2](smart-on-fhir/SMART_on_FHIR_adding_OAuth2.md)
 * [FHIR 标准实践之Connectathon活动](connectathon/introduction.md)
    * [第七届FHIR connectathon活动：FHIR_Connectathon7_for_Java_Dummies](connectathon/fhir_connectathon7_for_java_dummies.md)
-   * [7th Connectathon tracks](connectathon/7thconnectathon_tracks.md)
+   * [7th Connectathon tracks](connectathon/7thConnectathon_tracks.md)
