@@ -1,7 +1,8 @@
 [原文链接:Mapping HL7 Version 2 to FHIR Messages](http://fhirblog.com/2014/10/05/mapping-hl7-version-2-to-fhir-messages//)
 ## Mapping HL7 Version 2 to FHIR Messages    FHIR 消息：第一篇——V2 消息与 FHIR 消息的映射
 **译者注:消息是医疗信息交换的一种重要模式，从HL7 V2 V3到X12等。对于已经应用了HL7 V2 消息的系统来讲，如何迁移到 FHIR 消息中来，是我们接下来要探讨的话题.
-由于原文是2014年10 05日撰写的，但是FHIR Dstu在过去的日子里发生了较大的变化，所以我根据最新的版本对原文中的一些内容进行了修正。**
+由于原文是2014年10 05日撰写的，但是FHIR Dstu在过去的日子里发生了较大的变化，所以我根据最新的版本对原文中的一些内容进行了修正。
+全文以ORU^R01消息为例，简述了该V2 消息应该包含哪些字段，字段的含义，如果用FHIR 消息表示该V2消息又要使用到哪些FHIR 资源，资源的字段又如何赋值。**
 
 
 ### HL7 V2消息和FHIR 消息说明

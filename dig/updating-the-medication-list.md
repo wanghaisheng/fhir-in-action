@@ -2,9 +2,9 @@
 ## Updating the Medication List    如何更新用药列表信息
 **译者注:用药信息是每个医疗信息标准都迈步过去的坎儿，作者围绕着这个topic的第二篇。在知道了如何用List资源来表示患者的用药列表之后,这里主要探讨如何对列表中的信息进行更新操作.比方说,医师调整了患者正在服用的药物,想要记录这些变更.
 
-[如何使用List来表达患者的用药列表信息](http://fhirblog.com/2013/10/31/representing-a-patients-list-of-medications-in-fhir/)     
-[如何使用transaction来对患者用药列表信息进行更新操作](http://fhirblog.com/2013/10/31/representing-a-patients-list-of-medications-in-fhir/)    
-[区域范围内该共享哪些用药信息](http://fhirblog.com/2013/11/04/regional-shared-medications-with-fhir/)    
+[如何使用List来表达患者的用药列表信息](http://fhirblog.com/2013/10/31/representing-a-patients-list-of-medications-in-fhir/)
+[如何使用transaction来对患者用药列表信息进行更新操作](http://fhirblog.com/2013/10/31/representing-a-patients-list-of-medications-in-fhir/)
+[区域范围内该共享哪些用药信息](http://fhirblog.com/2013/11/04/regional-shared-medications-with-fhir/)
 [FHIR Medication lists revisited](http://fhirblog.com/2014/10/13/medication-lists-revisited/)
 
 List资源用来表示其他资源的集合,其中可能会包含大量的存储于其他地方的资源数据.

@@ -2,19 +2,19 @@
 [原文链接:FHIR Messaging: Clinical data from ADT Messagess](http://fhirblog.com/2015/03/23/fhir-messaging-clinical-data-from-adt-messages//)
 
 
-## More FHIR Messaging: ADT messages    FHIR 消息：第三篇——FHIR 消息的处理
+## More FHIR Messaging: ADT messages    FHIR 消息：第三篇——不同类型的V2消息所对应的FHIR 消息中涉及的资源
 
 
 **译者注:消息是医疗信息交换的一种重要模式，从HL7 V2 V3到X12等。对于已经应用了HL7 V2 消息的系统来讲，如何迁移到 FHIR 消息中来，是我们接下来要探讨的话题。
-本来是两篇，我们这里整合成一个**
+本来是两篇，我们这里整合成一个.一开始给出了患者管理域ADT消息的常见字段，随后分析了系统在收到不同的ADT消息该做出哪些处理(增删改哪些FHIR资源)**
 
-###  
+###
 
 V2 消息始于1987年，其中定义了一些触发事件，以及这些触发事件所引起的消息，规定了在收到消息之后应该完成的一些特殊的行为。
 
 比如患者入院是其中一个常见的，患者的详细信息通过Patient Administration System (PAS)(门诊住院医生工作站、挂号系统)录入，遂即产生一条 V2 消息发送至每个订阅系统-诸如RIS和LIS系统。
 
-触发事件的编码为 ‘A01’, 消息类型为 ‘ADT’ (Admission/Discharge/Transfer) – 也就是俗称的 ADT^A01 消息 
+触发事件的编码为 ‘A01’, 消息类型为 ‘ADT’ (Admission/Discharge/Transfer) – 也就是俗称的 ADT^A01 消息
 
 一旦接收系统处理完消息之后，消息自身就没用了，可以丢弃，但大多数系统都保留一份用作审计。与CDA不同，它不是用于持久化的临床文档，与REST不同，它没有明确定义系统的处理行为(GET 读 POST 新增)。
 
@@ -22,7 +22,7 @@ V2标准应用很广泛，这里只拿一小部分来看看如何使用 FHIR 来
 
 FHIR messaging 框架不像 REST接口那样成熟，这里我们要先做一些预设，后续的FHIR 中可能会发生变更。具体实现的时候请参考最新的 FHIR spec即可。
 
-我们以患者管理域为例– 也就是‘ADT’ (Admission/Discharge/Transfer) 消息。我们要建一个库，其中包含了医生想要查看的从V2 消息中抽取而成的 FHIR resources. 
+我们以患者管理域为例– 也就是‘ADT’ (Admission/Discharge/Transfer) 消息。我们要建一个库，其中包含了医生想要查看的从V2 消息中抽取而成的 FHIR resources.
 先看一下我们到底需要抽取哪些资源.
 
 第一条消息ADT^A01,也就是入院通知消息。通常是由门诊住院医生工作站、挂号系统产生的，包含大量的区段，大部分都是可选的区段。下表罗列了一些我们要用到的(不是全集),和我们可以从这些数据得到的 FHIR 资源。
@@ -37,7 +37,6 @@ FHIR messaging 框架不像 REST接口那样成熟，这里我们要先做一些
 | PV1 | Encounter | 就诊信息 |
 | PV2 | Encounter | 就诊信息的详细信息 |
 | OBX | Observation |  |
-
 | PR1 | Procedure | 入院通知是面向管理的而非临床，这里假设这个手术指的是是入院的原因 ，计划中的手术 不能简单的就认为患者已经做了该手术 |
 | AL1 | AllergyIntolerance | 过敏史 主要是入院时 患者自己陈述的 |
 | DG1 | Condition | 诊断 入院原因 |
@@ -82,6 +81,7 @@ FHIR messaging 框架不像 REST接口那样成熟，这里我们要先做一些
 
 V2.4 中有不止60个消息需要考虑，我们只选其中一些来进行说明。
 下表罗列了一些消息以及对数据模型的影响。简便起见用A01来代表ADT^A01
+
 | 消息每次 | 目的 |  是否有临床数据 |  描述 |
 | ---- | ---- | ---- | ---- |
 | A01 | Admit/Visit Notification | yes | 入院、分配病床后产生的消息。收到该消息后，根据临床数据产生一个新的 Encounter resource |
@@ -124,7 +124,7 @@ V2.4 中有不止60个消息需要考虑，我们只选其中一些来进行说�
 * 如果患者信息是由于A45而发生了改变，我们认为后面会有一条A08消息负责更新临床类信息。这个消息将会改变所有资源的subject。
 * 能够接收对于乱序的消息，使用message time (MSH-7) 来决定如何处理这些消息。比如，收到一个出院消息A03，将 encounter.status 设为 ‘finished’，然后收到一条换床消息A02，具体操作将取决于相应的日期时间，如果日期在出院日期之后，则将 encounter.status 设为‘in-progress’，其他情况则忽略该A02消息。
 
-     
+
 
 实际上，我们要保证源系统也遵循这样的约定。如果它们不遵循的话，要么改造我们的系统，要么使用一个集成引擎来特殊处理这些不遵循约定的消息。
  For example, if a particular hospital does not emit A08, but does include a snapshot of clinical data in all update messages (like an A02) then the Integration Engine could create an additional A08.

@@ -1,0 +1,1 @@
+# 第七届FHIR connectathon活动：FHIR_Connectathon7_for_Java_Dummies
