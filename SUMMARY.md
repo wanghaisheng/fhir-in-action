@@ -18,6 +18,8 @@
    * [FHIR Medication lists revisited](dig/FHIR-Medication-lists-revisited.md)
    * [Regional Shared Medications with FHIR](dig/regional-shared-medications-with-fhir.md)
    * [Updating the Medication List](dig/updating-the-medication-list.md)
+   * [DSTU2中的 operation 框架介绍](dig/the-new-dstu2-operations-framework.md)
+   * [FHIR 客户端的职责](dig/responsibilities-of-a-fhir-client.md)
 * [FHIR 标准与HL7 V2消息](v2message/introduction.md)
    * [Mapping HL7 Version 2 to FHIR Messages](v2message/mapping-hl7-version-2-to-fhir-messages.md)
    * [FHIR Messages – part 2](v2message/fhir-messages-part-2.md)
