@@ -1,6 +1,6 @@
-开放数据专题           
-1、立法推动usa 政府放开更多数据          
-2、epic和commonwealth之争                   
+开放数据专题
+1、立法推动usa 政府放开更多数据
+2、epic和CommonWell之争
 3、API能否拯救HIT
 
 
@@ -47,7 +47,7 @@ enigma: https://app.enigma.io 纽约时报:http://www.nytimes.com/2014/03/16/tec
 https://project-open-data.cio.gov/
 https://github.com/project-open-data
 ```
-## 2、epic和commonwealth之争
+## 2、epic和CommonWell之争
 
 ### 背景介绍
 主角：
@@ -147,15 +147,15 @@ It has been reported to ONC that privacy and security laws are cited in circumst
 
 作业中给出的解决方案：
 
-1、Strengthen in-the-field surveillance of ONC certified health IT tools, which was proposed in the certification requirements accompanying the Stage 3 Meaningful Use rule             
-2、Constrain standards and implementation specifications            
-3、Promote better transparency in certified health IT products and services that would "make developers more responsive to customer demands and help ameliorate market distortions" that lead to vendor information blocking               
-4、Establish governance rules deterring information blocking, which the report notes is addressed in ONC's interoperability roadmap                 
-5、Work with the U.S. Department of Health and Human Services Office for Civil Rights to ensure healthcare stakeholders understand HIPAA privacy and security standards, particularly those related to information sharing               
-6、Coordinate with the HHS Office of Inspector General and the Centers for Medicare & Medicaid Services on information blocking as it relates to physician self-referral and the federal anti-kickback statute              
-7、Refer illegal business practices to law enforcement agencies          
-8、Work with CMS to provide incentives for interoperability while simultaneously discouraging information blocking               
-9、Promote competition and innovation in health IT, which the Federal Trade Commission recommended in its comments on the interoperability roadmap               
+1、Strengthen in-the-field surveillance of ONC certified health IT tools, which was proposed in the certification requirements accompanying the Stage 3 Meaningful Use rule
+2、Constrain standards and implementation specifications
+3、Promote better transparency in certified health IT products and services that would "make developers more responsive to customer demands and help ameliorate market distortions" that lead to vendor information blocking
+4、Establish governance rules deterring information blocking, which the report notes is addressed in ONC's interoperability roadmap
+5、Work with the U.S. Department of Health and Human Services Office for Civil Rights to ensure healthcare stakeholders understand HIPAA privacy and security standards, particularly those related to information sharing
+6、Coordinate with the HHS Office of Inspector General and the Centers for Medicare & Medicaid Services on information blocking as it relates to physician self-referral and the federal anti-kickback statute
+7、Refer illegal business practices to law enforcement agencies
+8、Work with CMS to provide incentives for interoperability while simultaneously discouraging information blocking
+9、Promote competition and innovation in health IT, which the Federal Trade Commission recommended in its comments on the interoperability roadmap
 
 但看了总结就知道 美帝也是各种部门互相扯皮呀，这种东西往后10年看有起色不
 ```
@@ -205,36 +205,36 @@ In a subsequent interview, Healthcare IT News asked McKesson CEO John Hammergren
 But Epic CEO Judy Faulkner noted that her company wasn't asked to join before the announcement. "We did not know about it. We were not invited," Faulkner told Bloomberg back in 2013. "It appears on the surface to be used as a competitive weapon, and that's just wrong. It's wrong for the country."
 ```
 
-对于行业内愈演愈烈的竞争所引发这场闹剧，围观群众也有话说：           
-1、各位看官和Epic签合同要慎重啊 且要是Epic-to-non-Epic能达到Epic-to-Epic 的90%的功能，"哥就表演吃翔"        
-2、路人乙嘲讽到Epic到底是如何腆着脸皮说all of our systems can talk to each other            
-3、入会费是不是有点多             
-4、Epic does not need to join CommonWell. CommonWell needs to join Epic.          
-5、CommonWell sounds like a group of union thugs who want to strong-arm their way into other vendors' businesses              
+对于行业内愈演愈烈的竞争所引发这场闹剧，围观群众也有话说：
+1、各位看官和Epic签合同要慎重啊 且要是Epic-to-non-Epic能达到Epic-to-Epic 的90%的功能，"哥就表演吃翔"
+2、路人乙嘲讽到Epic到底是如何腆着脸皮说all of our systems can talk to each other
+3、入会费是不是有点多
+4、Epic does not need to join CommonWell. CommonWell needs to join Epic.
+5、CommonWell sounds like a group of union thugs who want to strong-arm their way into other vendors' businesses
 6、CommonWell or is it CommonHell? Later seems to be more appropriate.此人称Epic很好合作 方案也性价比高Stop creating mindless standards organizations with a scheme to collect additional revenues from licensing. Healthcare organizations dole out enough on their EMRs to these vendors and they don't need these vendors charging nickel and dime on every petty thing that gives patients control of their health information
-"我深深的表示赞同"                   
+"我深深的表示赞同"
 7、It just doesn't seem right that a private company pulling down $1.8B in revenue should be able to dictate interoperability. The government needs to step in and make sure all of these companies play well in the sandbox. Greed stands in the way of a national clinical data repository that researchers could use to find treatments and cures for diseases that have plagued us for decades.
-问题不存在一个厂商上 此人观点有理               
+问题不存在一个厂商上 此人观点有理
 8、Joining CommonWell doesn't seem like a great business opportunity if after two years they only have 1000 doctors live on it. Epic seems to understand the fundamentals of sharing patient data if they have 100,000 doctors on their version. My guess is that CommonWell is floundering and they want Epic in there to help them out. If they can also take some digs at Epic for not joining in the meantime - all the better in their mind.
 
-The healthcare market will drive the need for interoperability. I don't think getting the government involved will help anything.                
+The healthcare market will drive the need for interoperability. I don't think getting the government involved will help anything.
 
 9、What would be interesting to know is how many of Epic's 100,000 physicians are using a product other than something in the Epic family.
-Epic excels at interoperability between their own products, but what is their track record when connecting to someone outside the family, so to speak? Their numbers may be impressive, I don't know. But I do know that the huge challenge CommonWell has is interoperability across disparate vendors and products.                 
-10、It seems to me that CommonWell is primarily a marketing "gimmick". Aids and standards for inter-operability e.g. LOINC, CLSI standards, and other accepted nomenclatures have existed in the marketplace for some time. We probably have enough standards but many vendors simply pay "lip service" to them. Such a "collaboration" among competitors may be a "surface phenomenon" with relatively little substance.               
+Epic excels at interoperability between their own products, but what is their track record when connecting to someone outside the family, so to speak? Their numbers may be impressive, I don't know. But I do know that the huge challenge CommonWell has is interoperability across disparate vendors and products.
+10、It seems to me that CommonWell is primarily a marketing "gimmick". Aids and standards for inter-operability e.g. LOINC, CLSI standards, and other accepted nomenclatures have existed in the marketplace for some time. We probably have enough standards but many vendors simply pay "lip service" to them. Such a "collaboration" among competitors may be a "surface phenomenon" with relatively little substance.
 
-11、对第10条的回复 CommonWell is a response to Epic's market share and market power by vendors that heretofore did not feel compelled to cooperate with each other on data exchange. Epic dramatically dominates the large HCDO/ Academic Medical Center market and is viewed as almost unstoppable. As Epic conquers the large market, it will target the mid-size market - probably taking advantage of a cloud service at some point in time. This probably best explains why Epic doesn't want to join CommonWell - they understand the strategic alignment and competitive response that CommonWell represents.              
-12、It does seem a bit childish to see these types of exchanges between behemoths of the industry. However, I do wonder why Epic would have to sign an NDA to participate in a joint effort to share and propagate openess.                
+11、对第10条的回复 CommonWell is a response to Epic's market share and market power by vendors that heretofore did not feel compelled to cooperate with each other on data exchange. Epic dramatically dominates the large HCDO/ Academic Medical Center market and is viewed as almost unstoppable. As Epic conquers the large market, it will target the mid-size market - probably taking advantage of a cloud service at some point in time. This probably best explains why Epic doesn't want to join CommonWell - they understand the strategic alignment and competitive response that CommonWell represents.
+12、It does seem a bit childish to see these types of exchanges between behemoths of the industry. However, I do wonder why Epic would have to sign an NDA to participate in a joint effort to share and propagate openess.
 ### 后续报道 [Epic 投降了](http://www.healthcareitnews.com/news/epic-latest-drop-fees-data-exchanges)
 
 Epic CEO Judy Faulkner 在每年度最盛大HIT行业会展，也就是2015年的HIMSS15大会上宣布，直到2020年之前 咱大EPIC是不会再收大伙钱了。其实athenahealth和Cerner这俩货也是不久之前宣布他们也不收费
 
 
-群众观点：           
-1、up-front predictable cost and a pay-per-use model两种付费模式的区别而已，钱总是会出的          
-2、市场的不成熟导致没有有效的激励方式来促使信息的无缝免费流动。而能因为厂商收取服务费用就认为是某个厂商作恶。要解决的是到底谁来掏钱的问题          
-3、不额外收钱的话，，软件的成本、维护费咨询费必然要上涨，羊毛出在羊身上           
-http://www.healthcareitnews.com/news/epic-latest-drop-fees-data-exchange              
+群众观点：
+1、up-front predictable cost and a pay-per-use model两种付费模式的区别而已，钱总是会出的
+2、市场的不成熟导致没有有效的激励方式来促使信息的无缝免费流动。而能因为厂商收取服务费用就认为是某个厂商作恶。要解决的是到底谁来掏钱的问题
+3、不额外收钱的话，，软件的成本、维护费咨询费必然要上涨，羊毛出在羊身上
+http://www.healthcareitnews.com/news/epic-latest-drop-fees-data-exchange
 
 
 
