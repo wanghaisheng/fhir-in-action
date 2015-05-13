@@ -6,6 +6,7 @@
    * [awesome FHIR](intro/awesome-fhir.md)
    * [FHIR 概述](intro/overview.md)
    * [FHIR 开发者指南](intro/overview-dev.md)
+   * [开放数据专题](intro/open-data-is-coming.md)   
 * [FHIR 标准解读](dig/introduction.md)
    * [数据类型的介绍和示例](dig/datatypes.md)
    * [数据类型的简化](dig/simplify-datatypes.md)
