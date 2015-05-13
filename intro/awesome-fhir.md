@@ -1,18 +1,5 @@
-Fast Healthcare Interoperability Resources (FHIR, pronounced "Fire") defines a set of "[Resources](/index.php?title=Resource "Resource")" that represent granular clinical concepts. The resources can be managed in isolation, or aggregated into complex documents. Technically, FHIR is designed for the web; the resources are based on simple XML or JSON structures, with an http-based RESTful protocol where each resource has predictable URL. Where possible, open internet standards are used for data representation.
+## FHIR Implementation
 
-<table cellpadding="2" cellspacing="0" width="100%">
-<tbody>
-<tr>
-<td align="center" bgcolor="#e30614" width="40%">FHIR Implementation</td>
-
-<td align="center" bgcolor="#ffeb6a" width="30%">FHIR Development</td>
-
-<td align="center" bgcolor="#e30614" width="30%">Organizational</td>
-
-</tr>
-
-<tr>
-<td valign="top">
 *   The current specification: [http://www.HL7.org/fhir/](http://www.HL7.org/fhir/) (or [the development version](http://hl7.org/implement/standards/FHIR-Develop/))
     *   [FHIR Profiles from other Organizations](/index.php?title=FHIR_Profiles_from_other_Organizations "FHIR Profiles from other Organizations")
 *   Contact Information
@@ -53,9 +40,8 @@ Fast Healthcare Interoperability Resources (FHIR, pronounced "Fire") defines a s
     *   [2 day seminar and Connectathon](http://www.healthintersections.com.au/?p=2237) (Nov 6-7, Melbourne Australia)
     *   [International FHIR Development Days](http://fhir.furore.com/devdays/) (Nov 24-26, Amsterdam)
 
-</td>
+##     FHIR Development
 
-<td valign="top">
 *   How to
     *   [FHIR DSTU monitoring](/index.php?title=FHIR_DSTU_monitoring "FHIR DSTU monitoring") - how to monitor DSTU feedback
     *   [FHIR Ballot Prep](/index.php?title=FHIR_Ballot_Prep "FHIR Ballot Prep") - tasks for the next ballot and milestone dates
@@ -90,9 +76,9 @@ Fast Healthcare Interoperability Resources (FHIR, pronounced "Fire") defines a s
     *   [CDA to FHIR Samples Group](/index.php?title=CDA_to_FHIR_Samples_Group "CDA to FHIR Samples Group")
     *   [FHIR_Patient_Care_Resources](/index.php?title=FHIR_Patient_Care_Resources "FHIR Patient Care Resources")
 
-</td>
 
-<td valign="top">
+## Organizational
+
 *   Governance
     *   [FHIR Governance Process](/index.php?title=FHIR_Governance_Process "FHIR Governance Process")
     *   [FHIR Governance Board](/index.php?title=FHIR_Governance_Board "FHIR Governance Board") (FGB)
@@ -110,10 +96,9 @@ Fast Healthcare Interoperability Resources (FHIR, pronounced "Fire") defines a s
     *   [FGB Agendas & Minutes](http://wiki.hl7.org/index.php?title=FHIR_Governance_Board#Meeting_Information)
     *   [FMG Agendas & Minutes](http://wiki.hl7.org/index.php?title=FHIR_Management_Group#Meeting_Information)
 
-</td>
+## opensource project
 
-</tr>
-
-</tbody>
-
-</table>
+*   Testing
+    *   [FHIR 公开测试服务器的测试报告](http://www.projectcrucible.org/)
+*   Lib
+    *   [Ruby语言的FHIR模型 工具等](https://github.com/fhir-crucible/)
