@@ -147,15 +147,15 @@ It has been reported to ONC that privacy and security laws are cited in circumst
 
 作业中给出的解决方案：
 
-1、Strengthen in-the-field surveillance of ONC certified health IT tools, which was proposed in the certification requirements accompanying the Stage 3 Meaningful Use rule
-2、Constrain standards and implementation specifications
-3、Promote better transparency in certified health IT products and services that would "make developers more responsive to customer demands and help ameliorate market distortions" that lead to vendor information blocking
-4、Establish governance rules deterring information blocking, which the report notes is addressed in ONC's interoperability roadmap
-5、Work with the U.S. Department of Health and Human Services Office for Civil Rights to ensure healthcare stakeholders understand HIPAA privacy and security standards, particularly those related to information sharing
-6、Coordinate with the HHS Office of Inspector General and the Centers for Medicare & Medicaid Services on information blocking as it relates to physician self-referral and the federal anti-kickback statute
-7、Refer illegal business practices to law enforcement agencies
-8、Work with CMS to provide incentives for interoperability while simultaneously discouraging information blocking
-9、Promote competition and innovation in health IT, which the Federal Trade Commission recommended in its comments on the interoperability roadmap
+1、Strengthen in-the-field surveillance of ONC certified health IT tools, which was proposed in the certification requirements accompanying the Stage 3 Meaningful Use rule             
+2、Constrain standards and implementation specifications            
+3、Promote better transparency in certified health IT products and services that would "make developers more responsive to customer demands and help ameliorate market distortions" that lead to vendor information blocking               
+4、Establish governance rules deterring information blocking, which the report notes is addressed in ONC's interoperability roadmap                 
+5、Work with the U.S. Department of Health and Human Services Office for Civil Rights to ensure healthcare stakeholders understand HIPAA privacy and security standards, particularly those related to information sharing               
+6、Coordinate with the HHS Office of Inspector General and the Centers for Medicare & Medicaid Services on information blocking as it relates to physician self-referral and the federal anti-kickback statute              
+7、Refer illegal business practices to law enforcement agencies          
+8、Work with CMS to provide incentives for interoperability while simultaneously discouraging information blocking               
+9、Promote competition and innovation in health IT, which the Federal Trade Commission recommended in its comments on the interoperability roadmap               
 
 但看了总结就知道 美帝也是各种部门互相扯皮呀，这种东西往后10年看有起色不
 ```
