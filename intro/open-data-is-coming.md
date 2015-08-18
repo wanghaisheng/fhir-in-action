@@ -2,7 +2,7 @@
 1、立法推动usa 政府放开更多数据
 2、epic和CommonWell之争
 3、API能否拯救HIT
-
+4、HIT OpenAPI之面面观
 
 ##  1、立法进一步推动USA政府开放更多数据—[SGR repeal opens doors to big data](http://www.medicalpracticeinsider.com/best-practices/how-sgr-repeal-law-promises-supercharge-data-analysis)
 
