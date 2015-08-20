@@ -140,9 +140,11 @@ System.out.println(encoded);
 
 ## 如何在自己的项目中使用HAPI-FHIR
 由于 FHIR 自身在不断调整，HAPI也是在不断调整，SNAPSHOT指的不是最终的稳定版。
+
 ### MAVEN用户
 对于使用maven进行包管理的用户而言，只需要将hapi-fhir-base、hapi-fhir-structures-dstu两个jar包添加到pom文件中，比如，
 目前官方发布的唯一正式的试行版是DSTU1，截至目前，DSTU2的的投票过程还没有结束。如果你的系统想要支持这个版本，在pom中添加如下行
+这里的version值请根据情况调整，日前最新的为“1.2-SNAPSHOT”。
 
 ```java
 <dependency>
@@ -257,6 +259,88 @@ $ mvn jetty:run
 ```
 然后访问http://localhost:8080/hapi-fhir-jpaserver-example
 
+这时候如果你使用postman或curl等调试工具，例如这里选择curl，查询一下刚才部署成功的本地服务器上有没有patient
+在命令行中键入
+```
+curl  http://localhost:8080/hapi-fhir-jpaserver-example/base/Patient
+```
+返回结果
+```
+edwin@edwindeMacBook-Pro ~/workspace/fhir-in-action (master)$ curl  http://localhost:8080/hapi-fhir-jpaserver-example/base/Patient
+
+{
+    "resourceType":"Bundle",
+    "id":"091dc9de-00fb-4a93-b201-6c91c97e4b05",
+    "meta":{
+        "lastUpdated":"2015-08-20T11:07:10.156+08:00"
+    },
+    "type":"searchset",
+    "total":1,
+    "link":[
+        {
+            "relation":"self",
+            "url":"http://localhost:8080/hapi-fhir-jpaserver-example/base/Patient"
+        }
+    ],
+    "entry":[
+        {
+            "resource":{
+                "resourceType":"Patient",
+                "id":"1",
+                "meta":{
+                    "versionId":"1",
+                    "lastUpdated":"2015-08-20T10:55:50.183+08:00"
+                },
+                "text":{
+                    "status":"generated",
+                    "div":"<div><div class=\"hapiHeaderText\"><b>TESTCREATERESOURCECONDITIONAL </b></div><table class=\"hapiPropertyTable\"><tbody></tbody></table></div>"
+                },
+                "name":[
+                    {
+                        "family":[
+                            "testCreateResourceConditional"
+                        ]
+                    }
+                ]
+            },
+            "search":{
+                "mode":"match"
+            }
+        }
+    ]
+}%  
+```
+
+继续查询这唯一一条记录的具体内容话
+```
+curl  http://localhost:8080/hapi-fhir-jpaserver-example/base/Patient/1
+
+```
+
+得到结果
+```
+edwin@edwindeMacBook-Pro ~/workspace/fhir-in-action (master●)$ curl  http://localhost:8080/hapi-fhir-jpaserver-example/base/Patient/1
+
+{
+    "resourceType":"Patient",
+    "id":"1",
+    "meta":{
+        "versionId":"1",
+        "lastUpdated":"2015-08-20T10:55:50.183+08:00"
+    },
+    "text":{
+        "status":"generated",
+        "div":"<div><div class=\"hapiHeaderText\"><b>TESTCREATERESOURCECONDITIONAL </b></div><table class=\"hapiPropertyTable\"><tbody></tbody></table></div>"
+    },
+    "name":[
+        {
+            "family":[
+                "testCreateResourceConditional"
+            ]
+        }
+    ]
+}%           
+```
 #### 整体架构
 
 * Resource provider 对于某个版本的FHIR， 每个资源类型都会有一个[Resource Provider](http://jamesagnew.github.io/hapi-fhir/doc_rest_server.html#resource_providers)
